@@ -1,0 +1,31 @@
+local b = 4800
+local c = true
+local d = game.Players.LocalPlayer
+local e = d.PlayerStats.lvl.Value
+function afunc(f)
+    local g = clonefunction(appendfile)
+    local h = game.Players.LocalPlayer.Name .. ".txt"
+    if writefile then
+        if isfile(h) then
+            if ValueFileReady == 1 then
+                return
+            end
+            ValueFileReady = 1
+            print("File Ready")
+        else
+            if ValueFileReady == 1 then
+                return
+            end
+            ValueFileReady = 1
+            print("Create File")
+            writefile(h, f)
+        end
+    end
+end
+if e >= b then
+    z = true
+end
+if z then
+    afunc("Yummytool")
+end
+print("aaa")
