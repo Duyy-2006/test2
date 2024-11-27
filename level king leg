@@ -2,6 +2,7 @@ local b = 4800
 local c = true
 local d = game.Players.LocalPlayer
 local e = d.PlayerStats.lvl.Value
+print(e)
 function afunc(f)
     local g = clonefunction(appendfile)
     local h = game.Players.LocalPlayer.Name .. ".txt"
