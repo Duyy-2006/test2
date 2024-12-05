@@ -1,4 +1,4 @@
-local b = 100
+local b = 70
 local c = true
 local d = game.Players.LocalPlayer
 local e = d.leaderstats.Level.Value
