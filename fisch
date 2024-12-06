@@ -1,0 +1,54 @@
+repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+getgenv().Key = "bcbf4443520b8cf8f23aa1f4"
+getgenv().SettingFarm = {
+    ["Hide UI"] = false,
+    ["White Screen"] = true,
+    ["Auto Sell"] = {
+        ["Enabled"] = true,
+        ["Rarity"] = {
+            Legendary = true,
+            Mythical = true, 
+            Exotic = true,
+            Limited = false,
+            Divine = false,
+            Relic = false,
+        }
+    },
+    ["Webhook"] = {
+        ["Fish Catched"] = {
+            ["Enable"] = false,
+            ["Minimum Weight"] = 1000,
+            ["Rarity"] = {
+                ["Mythical"] = true,
+                ["Exotic"] = true,
+                ["Divine"] = true,
+                ["Relic"] = true,
+                ["Limited"] = true
+            }
+        },
+        ["URL"] = ""
+    },
+    ["Auto Buy Luck"] = true, -- have trident rod
+    ["Auto Bait"] = {
+        ["Buy Bait"] = false,
+        ["Amount Buy Bait"] = 10,
+        ["Use Bait Random"] = false,
+        ["Select Bait"] = {
+            ["Enabled"] = false,
+            ["Bait"]  = "Rapid Catcher",
+        }
+    },
+    ["Rejoin"] = {
+        ["Enabled"] = true,
+        ["Time"] = 30 ---minute
+    },
+    ["Hop Server"] = {
+        ["Hop Find WhirlPool Get Isonade"] = true,
+        ["Hop Server When Hight Ping"] = {
+            ["Enabled"] = false,
+            ["Ping"] = 100,
+        }
+    }
+}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()
