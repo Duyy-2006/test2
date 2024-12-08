@@ -1,54 +1,40 @@
-repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-getgenv().Key = "bcbf4443520b8cf8f23aa1f4"
-getgenv().SettingFarm = {
-    ["Hide UI"] = false,
-    ["White Screen"] = true,
-    ["Auto Sell"] = {
-        ["Enabled"] = true,
-        ["Rarity"] = {
-            Legendary = true,
-            Mythical = true, 
-            Exotic = true,
-            Limited = false,
-            Divine = false,
-            Relic = false,
-        }
-    },
-    ["Webhook"] = {
-        ["Fish Catched"] = {
-            ["Enable"] = false,
-            ["Minimum Weight"] = 1000,
-            ["Rarity"] = {
-                ["Mythical"] = true,
-                ["Exotic"] = true,
-                ["Divine"] = true,
-                ["Relic"] = true,
-                ["Limited"] = true
-            }
+_G.Kaitun = true
+Config = {
+        ['Lock Fps'] = 15,
+        ['Farm Fish'] = true,
+        ['Auto Sell'] = true,
+        ["Fully Auto All"] = true,
+        ["Fishing"] = {
+            ["Pull Delay"] = 0.1,
+            ["Cast Delay"] = 0,
         },
-        ["URL"] = ""
-    },
-    ["Auto Buy Luck"] = true, -- have trident rod
-    ["Auto Bait"] = {
-        ["Buy Bait"] = false,
-        ["Amount Buy Bait"] = 10,
-        ["Use Bait Random"] = false,
-        ["Select Bait"] = {
-            ["Enabled"] = false,
-            ["Bait"]  = "Rapid Catcher",
-        }
-    },
-    ["Rejoin"] = {
-        ["Enabled"] = true,
-        ["Time"] = 30 ---minute
-    },
-    ["Hop Server"] = {
-        ["Hop Find WhirlPool Get Isonade"] = true,
-        ["Hop Server When Hight Ping"] = {
-            ["Enabled"] = false,
-            ["Ping"] = 100,
-        }
+        ["Keep Fish"] = {
+            ["Exotic"] = false,
+            ["Mythical"] = false,
+            ["Legendary"] = false,
+            ["Event"] = true
+        },
+        ["Reduce"] = {
+            ['White Screen'] = false,
+            ['Black Screen'] = true,
+        },
+        ["Enchant Lock"] = {
+            ["Aurora Rod"] = "Hasty",
+            ["Trident Rod"] = "Hasty",    
+        },
+        ["Custom"] = {
+            ["Custom Use Rod"] = nil,
+            ["Custom Bait"] = "Rapid Catcher",
+        },
+        ["WebHook"] = {
+            ["Link"] = '',
+            ["Discord Id"] = '',
+            ["Delay Sending"] = 5, 
+            ["Auto Sending"] = false,
+            ["Ping With Discord Id"] = false,
+        },
     }
-}
+_G.Key = 'ALL-CQO93-8JAI4'
+_G.DiscordId  = '935143471243726858'
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/refs/heads/main/BananaCat-KaitunFisch.lua"))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/MonkiTeam/Nomal-Project/refs/heads/main/FischKaitun'))(); 
