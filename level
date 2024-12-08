@@ -1,32 +1,59 @@
-local b = 100
-local c = true
-local d = game.Players.LocalPlayer
-local e = d.leaderstats.Level.Value
-function afunc(f)
-    local g = clonefunction(appendfile)
-    local h = game.Players.LocalPlayer.Name .. ".txt"
+GoldConfig = "300000C$"
+LevelConfig = 70 
+print('VN SCRIPT BYPASSED')
+function Savetxtconfig(log)
+    if not ValueFileReady then
+        ValueFileReady = 0
+    end
+    if not log then
+        log = 'Yummytool'
+    end
+    
+    local filename = game:GetService("Players").LocalPlayer.Name .. ".txt"
+    
     if writefile then
-        if isfile(h) then
+        print('Kiểm Tra WriteFile')
+        
+        if isfile(filename) then
             if ValueFileReady == 1 then
                 return
             end
             ValueFileReady = 1
-            print("File Ready")
+            print('File Đã Có Trong Workspace')
         else
             if ValueFileReady == 1 then
                 return
             end
             ValueFileReady = 1
-            print("Create File")
-            writefile(h, f)
+            writefile(filename, log)
         end
     end
 end
-if e >= b then
-    z = true
-    print("OK")
+
+function GetGold()
+    print("Data Money"..game:GetService("Players").LocalPlayer.leaderstats["C$"].Value or 0)
+    return game:GetService("Players").LocalPlayer.leaderstats["C$"].Value or 0
 end
-if z then
-    afunc("Yummytool")
+function GetLevel()
+    print("Data Level"..game:GetService("Players").LocalPlayer.leaderstats.Level.Value or 0)
+    return game:GetService("Players").LocalPlayer.leaderstats.Level.Value or 0
 end
-print("aaa")
+function A1()
+   if GetGold() and GetLevel() and GoldConfig and LevelConfig and GetGold() >= GoldConfig and GetLevel() >= LevelConfig then 
+      print('Save Config')
+      Savetxtconfig()
+      print('Data : '..GetGold()..'ReLog'..GoldConfig)
+   end
+end
+    luaCodeFreeFireMaxCuazero = false
+A1()
+spawn(function()
+ while wait(3) do
+     if luaCodeFreeFireMaxCuazero then
+         print('huy vong lap')
+        break
+     end
+    A1()
+    luaCodeFreeFireMaxCuazero = true
+ end
+end)
