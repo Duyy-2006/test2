@@ -1,4 +1,4 @@
-GoldConfig = "1000000C$"
+GoldConfig = "3000000C$"
 LevelConfig = 150 
 print('VN SCRIPT BYPASSED')
 function Savetxtconfig(log)
