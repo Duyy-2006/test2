@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-getgenv().Key = "d7176fb323e21a6ca3e1e8d0"
+getgenv().Key = "bcbf4443520b8cf8f23aa1f4"
 getgenv().SettingFarm = {
     ["Hide UI"] = false,
     ["White Screen"] = true,
