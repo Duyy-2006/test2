@@ -9,9 +9,9 @@ getgenv().SettingFarm = {
             Legendary = true,
             Mythical = true, 
             Exotic = true,
-            Limited = false,
-            Divine = false,
-            Relic = false,
+            Limited = true,
+            Divine = true,
+            Relic = true,
         }
     },
     ["Webhook"] = {
@@ -40,7 +40,7 @@ getgenv().SettingFarm = {
     },
     ["Rejoin"] = {
         ["Enabled"] = true,
-        ["Time"] = 30 ---minute
+        ["Time"] = 60 ---minute
     },
     ["Hop Server"] = {
         ["Hop Find WhirlPool Get Isonade"] = true,
