@@ -1,5 +1,5 @@
 GoldConfig = "200000C$"
-LevelConfig = 120
+LevelConfig = 140
 print('VN SCRIPT BYPASSED')
 function Savetxtconfig(log)
     if not ValueFileReady then
