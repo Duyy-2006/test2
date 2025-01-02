@@ -1,39 +1,28 @@
-Config = {
-        ['Lock Fps'] = 15,
-        ['Farm Fish'] = true,
-        ['Auto Sell'] = true,
-        ['Save Functions'] = nil, -- DONT EDIT IT
-        ["Fishing"] = {
-            ["Pull Delay"] = 0.2,
-            ["Cast Delay"] = 0,
-        },
-        ["Keep Fish"] = {
-            ["Exotic"] = true,
+_G.Settings = {
+    ["AfkCheckTime"] = 300, -- Seconds
+    ["EquipRod"] = "Auto", -- Trident Rod, Destiny Rod,... Rod
+    ["SellFish"] = {
+        ["SellDelay"] = 100, -- Seconds
+        ["Enable"] = true,
+        ["Method"] = {
+            ["Event"] = true,
+            ["Enchant"] = true,
             ["Mythical"] = true,
-            ["Legendary"] = false,
-            ["Event"] = true
-        },
-        ["Reduce"] = {
-            ['White Screen'] = false,
-            ['Black Screen'] = true,
-        },
-        ["Enchant Lock"] = {
-            ["Allow Enchant"] = true,
-            ["Trident Rod"] = "Hasty",    
-        },
-        ["Custom"] = {
-            ["Custom Use Rod"] = nil,
-            ["Custom Bait"] = "Rapid Catcher",
-        },
-        ["WebHook"] = {
-            ["Link"] = 'https://discord.com/api/webhooks/940856578104496128/86DwfDhyxru0TBP49O2VcD-DE53VuDBZvMQVG00meP6s8SjRQfWayix75n4P7PxOZzvx',
-            ["Discord Id"] = '935143471243726858',
-            ["Delay Sending"] = 5, 
-            ["Auto Sending"] = false,
-            ["Ping With Discord Id"] = false,
-        },
-    }
-_G.Key = 'ALL-CQO93-8JAI4'
-_G.DiscordId  = '935143471243726858'
+            ["Legendary"] = true,
+            ["Exotic"] = true
+        }
+    },
+    ['Rod'] = {
+        ['Trident Rod'] = true,
+        ['Destiny Rod'] = true
+    },
+    ['MethodShake'] = "Fast", -- Fast, Fix bug
+    ["FpsBoost"] = true,
+    ["Black_Screen"] = true
+}
+getgenv().Key = "MARU-TN4X8-SJSMZ-4WH3-DJ4GH-SA7K"
+getgenv().id = "935143471243726858"
+getgenv().Script_Mode = "Kaitun_Script"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/projectpula/PROJECT/refs/heads/main/FischKaitun'))();
+
