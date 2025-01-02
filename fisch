@@ -29,7 +29,7 @@ Config = {
             ["Link"] = 'https://discord.com/api/webhooks/940856578104496128/86DwfDhyxru0TBP49O2VcD-DE53VuDBZvMQVG00meP6s8SjRQfWayix75n4P7PxOZzvx',
             ["Discord Id"] = '935143471243726858',
             ["Delay Sending"] = 5, 
-            ["Auto Sending"] = true,
+            ["Auto Sending"] = false,
             ["Ping With Discord Id"] = false,
         },
     }
