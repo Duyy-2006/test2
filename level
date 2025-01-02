@@ -1,5 +1,6 @@
-GoldConfig = "200000C$"
-LevelConfig = 140
+GoldConfig = "200000$"
+LevelConfig = 120
+local RodsSelect = {'Rod Of The Depths'}
 print('VN SCRIPT BYPASSED')
 function Savetxtconfig(log)
     if not ValueFileReady then
@@ -12,14 +13,14 @@ function Savetxtconfig(log)
     local filename = game:GetService("Players").LocalPlayer.Name .. ".txt"
     
     if writefile then
-        print('Kiểm Tra WriteFile')
+        print('Kiá»ƒm Tra WriteFile')
         
         if isfile(filename) then
             if ValueFileReady == 1 then
                 return
             end
             ValueFileReady = 1
-            print('File Đã Có Trong Workspace')
+            print('File ÄĂ£ CĂ³ Trong Workspace')
         else
             if ValueFileReady == 1 then
                 return
@@ -31,29 +32,59 @@ function Savetxtconfig(log)
 end
 
 function GetGold()
-    print("Data Money"..game:GetService("Players").LocalPlayer.leaderstats["C$"].Value or 0)
+    --print("Data Money"..game:GetService("Players").LocalPlayer.leaderstats["C$"].Value or 0)
     return game:GetService("Players").LocalPlayer.leaderstats["C$"].Value or 0
 end
 function GetLevel()
-    print("Data Level"..game:GetService("Players").LocalPlayer.leaderstats.Level.Value or 0)
+    --print("Data Level"..game:GetService("Players").LocalPlayer.leaderstats.Level.Value or 0)
     return game:GetService("Players").LocalPlayer.leaderstats.Level.Value or 0
 end
 function A1()
    if GetGold() and GetLevel() and GoldConfig and LevelConfig and GetGold() >= GoldConfig and GetLevel() >= LevelConfig then 
-      print('Save Config')
-      Savetxtconfig()
-      print('Data : '..GetGold()..'ReLog'..GoldConfig)
+      --print('Save Config')
+      --print('Data : '..GetGold()..'ReLog'..GoldConfig)
+      return true
    end
 end
-    luaCodeFreeFireMaxCuazero = false
-A1()
+
+
+function GetRods()
+        warn('stop')
+    if A1() then
+        warn('start')
+            local Rods = game:GetService("Players").LocalPlayer.PlayerGui.hud.safezone.equipment.rods.scroll.safezone
+            local tablerods = {}
+            for i,v in pairs(Rods:GetChildren()) do
+            if v.ClassName == 'Frame' then
+                table.insert(tablerods,tostring(v.Name))
+                warn(v.Name)
+            end
+            end
+            if type(RodsSelect) == 'table' then
+                local tablerod1 = {}
+            for i,v in pairs(RodsSelect) do
+                if table.find(tablerods,tostring(v)) then
+                    warn('Rod :'..tostring(v))
+                    Savetxtconfig()
+                    return true
+                end
+            end
+            elseif type(RodsSelect) == 'string' then
+            if table.find(tablerods,'Flimsy Rod') then
+                warn('Find : '..RodsSelect)
+                Savetxtconfig()
+                return true
+            end
+            else
+            warn('rt function : error')
+        end
+    end
+end
+local Rosc = GetRods()
 spawn(function()
- while wait(3) do
-     if luaCodeFreeFireMaxCuazero then
-         print('huy vong lap')
-        break
-     end
-    A1()
-    luaCodeFreeFireMaxCuazero = true
+ while wait(1) do
+   if Rosc or GetRods() then
+      break
+   end
  end
 end)
