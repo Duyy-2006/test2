@@ -1,0 +1,51 @@
+local SaveFile = true
+local coinselect = 8000
+function Savetxtconfig(log)
+    if not ValueFileReady then
+        ValueFileReady = 0
+    end
+    if not log then
+        log = 'Yummytool'
+    end
+    
+    local filename = game:GetService("Players").LocalPlayer.Name .. ".txt"
+    
+    if writefile then
+        print('Kiểm Tra WriteFile')
+        
+        if isfile(filename) then
+            if ValueFileReady == 1 then
+                return
+            end
+            ValueFileReady = 1
+            print('File Đã Có Trong Workspace')
+        else
+            if ValueFileReady == 1 then
+                return
+            end
+            ValueFileReady = 1
+            writefile(filename, log)
+        end
+    end
+end
+function GetCoinData1()
+    return game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2024.Container.EventFrames.MysteryBox.Info.Tokens.Container.TextLabel.Text
+end
+function CheckCoindatasavetofile()
+    -- Savetxtconfig()
+    if SaveFile and tonumber(coinselect) then
+       local coindata = tonumber(GetCoinData1())
+       if tonumber(GetCoinData1()) >= tonumber(coinselect) then
+          breakwhilesavefile = true
+          Savetxtconfig()
+       end
+    end
+end
+CheckCoindatasavetofile()
+spawn(function()
+ while wait(1) do
+    if not breakwhilesavefile and SaveFile and tonumber(coinselect) then
+        CheckCoindatasavetofile()
+    end
+ end
+end)
