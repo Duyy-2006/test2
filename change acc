@@ -1,3 +1,4 @@
+print("Pass")
 GoldConfig = "200000$"
 LevelConfig = 120
 local RodsSelect = {'Rod Of The Depths'}
