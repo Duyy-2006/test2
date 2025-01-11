@@ -1,3 +1,4 @@
+print("Work")
 local SaveFile = true
 local coinselect = 8000
 function Savetxtconfig(log)
