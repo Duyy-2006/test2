@@ -3,6 +3,6 @@ check_1 = gold
 wait(300)
 check_2 = gold 
 if check_1 == check_2 then
-    print(true)
+    game:GetService("TeleportService"):Teleport(game.PlaceId)
 end
 
