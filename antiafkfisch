@@ -1,6 +1,6 @@
 gold = game:GetService("Players").LocalPlayer.leaderstats["C$"].Value or 0
 check_1 = gold 
-wait(5)
+wait(300)
 check_2 = gold 
 if check_1 == check_2 then
     print(true)
