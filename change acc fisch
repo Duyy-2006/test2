@@ -1,5 +1,5 @@
 GoldConfig = "200000$"
-LevelConfig = 120
+LevelConfig = 100
 local RodsSelect = {'Rod Of The Depths'}
 print('VN SCRIPT BYPASSED')
 function Savetxtconfig(log)
