@@ -18,8 +18,8 @@ _G.Settings = {
         ['Trident Rod'] = true,
         ['Destiny Rod'] = true
     },
-    ['MethodShake'] = "Fast", -- Fast, Fix bug
-    ["FpsBoost"] = false,
+    ['MethodShake'] = "Fix bug", -- Fast, Fix bug
+    ["FpsBoost"] = true,
     ["Black_Screen"] = true
 }	
 getgenv().Key = "MARU-TN4X8-SJSMZ-4WH3-DJ4GH-SA7K"
