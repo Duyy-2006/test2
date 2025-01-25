@@ -87,8 +87,8 @@ getgenv().SettingFarm = {
         }
     },
     ["Rejoin"] = {
-        ["Enabled"] = true,
-        ["Time"] = 30 ---minute
+        ["Enabled"] = false,
+        ["Time"] = 20 ---minute
     },
     ["Hop Server"] = {
         ["Hop Find WhirlPool Get Isonade"] = true,
