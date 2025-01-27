@@ -1,79 +1,28 @@
-_G.Configs = {
-	-- [[ setclipboard(tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)) ]] -- For Copy CFrame
-	Setting = {
-		["Style Selected Object Shake"] = false, -- < Boolean > Not Recommended Enabled For Fix Shake Bug
-		["Reducing Cpu Usage"] = true, -- < Boolean > Using Cpu less 20
-		["Auto Use Aurora"] = true, -- < Boolean > Auto Use Aurora For Ready Have
-		["FishingPosition"] = CFrame.new(-4372.729, -1003.10132, 1998.22168, -0.989017427, 1.15775713e-07, -0.147799075, 1.1732817e-07, 1, -1.78548021e-09, 0.147799075, -1.91068654e-08, -0.989017427), -- < CFrame > Position Fishing
-		["Farm Level"] = {
-			["Allow Farm Level"] = true, -- < Boolean > Enabled Mode Farm Level
-			["Trier Rods [For Level]"] = {"Aurora Rod", "Trident Rod", "Rod Of The Depths", "No-Life Rod"}, -- < Table > Table Equip Rod For Farm Level
-			["Position"] = CFrame.new(-2725.81201, 156.497131, 1734.90979, 0.170638129, -1.49950131e-06, -0.985333741, -7.38336752e-08, 1, -1.53460712e-06, 0.985333741, 3.34613304e-07, 0.170638129), -- < CFrame > Position Farm Level
-			["Min Money"] = 2000000 -- < Number > Min Money To Farm Level
-		},
-		["Sell Setting"] = {
-			["Sell Event Fish"] = true, -- < Boolean > Enabled Selling Event Fish
-			["Sell Exotic Fish"] = true, -- < Boolean > Enabled Selling Exotic Fish
-			["Sell Mythical Fish"] = true, -- < Boolean > Enabled Selling Mythical Fish
-			["Sell Legendary"] = true -- < Boolean > Enabled Selling Legendary Fish
-		}
-	},
-	["Auto Enchant"] = {
-		["Lock Enchant"] = {
-			-- < Table > Lock Enchant ["Rod Name"] = {"Name Enchant","Muti Enchant"}
-			["Rod Of The Depths"] = {"Abyssal", "Ghastly", "Noir", "Sea King"},
-			["Trident Rod"] = {"Clever", "Insight"},
-			["Aurora Rod"] = {"Abyssal", "Ghastly", "Noir", "Sea King", "Hasty"},
-			["Kraken Rod"] = {"Hasty"},
-			["Poseidon Rod"] = {"Hasty"}
-		},
-		["Min Money To Enchant"] = 1000000, -- < Number > Min Money To Enchant Rods
-		["Allow Enchant"] = false -- < Boolean > Enabled Enchant
-	},
-	["Custom Equip"] = {
-		["Trier Rods Equip"] = {"Carbon Rod", "Rapid Rod", "Trident Rod", "Aurora Rod", "Rod Of The Depths", "Kraken Rod", "No-Life Rod"}, -- < Table > Table Equip Rod
-		["Custom Bait"] = {
-			["Bait Equip"] = {"None"}, -- < Table > Table Equip Bait
-			["Best Bait"] = {
-				["Allow Auto Choose"] = true, -- < Boolean > If you enable Will Bait Equip Not Working
-				["Style"] = "LureSpeed" -- < String > Recommended LureSpeed / Luck
-			}
-		}
-	},
-	["Custom Buying"] = {
-		["Rods"] = {"Kings Rod", "Midas Rod", "Trident Rod", "Aurora Rod", "Mythical Rod", "Destiny Rod"},
-		["Allow Buying"] = {
-			["Aurora Rod"] = true,
-			["Trident Rod"] = true,
-			["Destiny Rod"] = true,
-			["Poseidon Rod"] = true,
-			["Kraken Rod"] = true
-		},
-		["Buy Effect Luck"] = {
-			["Allow Buying"] = true, -- < Boolean > Enabled Buying Luck Effect
-			["Min Money"] = 50000 -- < Number > Min Money For Buying Luck Effect
-		},
-		["Rod Of The Depths"] = {
-			["Allow Doing"] = true, -- < Boolean > Enabled Do Rod Of The Depths
-			["Min Money Doing"] = 2000000 -- < Number > Min Money For Do Rod Of The Depths
-		},
-		["Heaven Rod"] = {
-			["Allow Doing"] = true, -- < Boolean > Enabled Do Heaven Rod
-			["Min Money Doing"] = 5000000 -- < Number > Min Money For Do Heaven Rod
-		}
-	},
-	Webhook = {
-		["Link"] = "", -- < String > Link Webhook
-		["Content"] = [[Player : [NAMEPLAYER]
-Money : [MONEY]$
-Level : [LEVEL]
-Ready Rods Count [COUNTRODS]
-All Rods ```[ALLRODS]```]], -- < String > Content Webhook Send
-		["Delay"] = 60 -- < Number > Delay Sending Webhook
-	}
-}
-
-_G.Key = 'ALL-CQO93-8JAI4'
-_G.DiscordId  = '935143471243726858'
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/projectpula/PROJECT/refs/heads/main/FischKaitun'))();
+if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
+getgenv().Script_Mode = "Kaitun_Script"
+_G.Settings = {
+    ["AfkCheckTime"] = 300, -- Seconds
+    ["EquipRod"] = "Auto", -- Trident Rod, Destiny Rod,... Rod
+    ["SellFish"] = {
+        ["SellDelay"] = 100, -- Seconds
+        ["Enable"] = true,
+        ["Method"] = {
+            ["Event"] = true,
+            ["Enchant"] = true,
+            ["Mythical"] = true,
+            ["Legendary"] = true,
+            ["Exotic"] = true
+        }
+    },
+    ['Rod'] = {
+        ['Trident Rod'] = true,
+        ['Destiny Rod'] = true
+    },
+    ['MethodShake'] = "Fix bug", -- Fast, Fix bug
+    ["FpsBoost"] = true,
+    ["Black_Screen"] = true
+}	
+getgenv().Key = "MARU-TN4X8-SJSMZ-4WH3-DJ4GH-SA7K"
+getgenv().id = "935143471243726858"
+getgenv().Script_Mode = "Kaitun_Script"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()
