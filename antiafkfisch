@@ -1,6 +1,6 @@
 gold = game:GetService("Players").LocalPlayer.leaderstats["C$"].Value or 0
 check_1 = gold 
-wait(300)
+wait(900)
 check_2 = gold 
 if check_1 == check_2 then
     game:GetService("TeleportService"):Teleport(game.PlaceId)
