@@ -4,6 +4,8 @@ local LevelConfig = 150
 local Gold = game:GetService("ReplicatedStorage").playerstats[playerName].Stats.coins.Value
 local Level = game.Players.LocalPlayer.leaderstats.Level.Value or 0
 local filename = game:GetService("Players").LocalPlayer.Name .. ".txt"
+print(Gold)
+printf(Level)
 if tonumber(Gold) >= GoldConfig and tonumber(Level) >= LevelConfig then
     print("True")
     writefile(filename, "Yummytool")
