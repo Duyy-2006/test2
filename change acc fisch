@@ -1,6 +1,6 @@
 GoldConfig = "1000000$"
-LevelConfig = 200
-local RodsSelect = {'Rod Of The Depths'}
+LevelConfig = 150
+local RodsSelect = {''}
 print('VN SCRIPT BYPASSED')
 function Savetxtconfig(log)
     if not ValueFileReady then
