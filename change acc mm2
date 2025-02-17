@@ -1,6 +1,6 @@
 amount = 4000
 local filename = game:GetService("Players").LocalPlayer.Name .. ".txt"
-token = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Lobby.Screens.Shop.Title.Coins.Container.Amount.Text
+token = game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2024.Container.EventFrames.PurchaseCurrency.Info.Coins.Container.TextLabel.Text
 print(token)
 if tonumber(token) >= amount then
     print("True")
