@@ -1,13 +1,10 @@
 print("check")
-while true do
-    local gold = game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2024.Container.EventFrames.PurchaseCurrency.Info.Coins.Container.TextLabel.Text
-    local check_1 = gold
-    print(check_1)
-    wait(300) -- Wait for 5 minutes
-    local check_2 = gold
-    print(check_2)
-    if tonumber(check_1) == tonumber(check_2) then
-        game:GetService("TeleportService"):Teleport(game.PlaceId)
-    end
-    wait(15)
+local gold = game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2024.Container.EventFrames.PurchaseCurrency.Info.Coins.Container.TextLabel.Text
+local check_1 = gold
+print(check_1)
+wait(300) -- Wait for 5 minutes
+local check_2 = gold
+print(check_2)
+if tonumber(check_1) == tonumber(check_2) then
+    game:GetService("TeleportService"):Teleport(game.PlaceId)
 end
