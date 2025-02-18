@@ -5,6 +5,6 @@ print(check_1)
 wait(300) -- Wait for 5 minutes
 local check_2 = gold
 print(check_2)
-if tonumber(check_1) == tonumber(check_2) then
+if tonumber(check_1) == tonumber(check_2) or tonumber(check_2) <= tonumber(check_1) + 50 then
     game:GetService("TeleportService"):Teleport(game.PlaceId)
 end
