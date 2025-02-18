@@ -2,6 +2,10 @@ Fisch = 16732694052
 MM = 142823291
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Duyy-2006/test2/refs/heads/main/Hub"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Duyy-2006/test2/refs/heads/main/low%20cpu"))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Duyy-2006/test2/refs/heads/main/antiafkfisch"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Duyy-2006/test2/refs/heads/main/change%20acc"))()
-loadstring(game:HttpGet("https://github.com/Duyy-2006/test2/blob/main/anti%20afk%20mm2"))()
+if game.PlaceId == Fisch then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Duyy-2006/test2/refs/heads/main/antiafkfisch"))()
+elseif game.PlaceId == MM then
+    loadstring(game:HttpGet("https://github.com/Duyy-2006/test2/blob/main/anti%20afk%20mm2"))()
+end
+
