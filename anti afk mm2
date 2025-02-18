@@ -4,7 +4,7 @@ while true do
     local check_1 = gold
     wait(300) -- Wait for 5 minutes
     local check_2 = gold
-    if tonumber(check_1) <= tonumber(check_2) + 10 then
+    if tonumber(check_1) == tonumber(check_2) then
         game:GetService("TeleportService"):Teleport(game.PlaceId)
     end
     wait(15)
