@@ -1,0 +1,10 @@
+while true do
+    local gold = game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2024.Container.EventFrames.PurchaseCurrency.Info.Coins.Container.TextLabel.Text
+    local check_1 = gold
+    wait(300) -- Wait for 5 minutes
+    local check_2 = gold
+    if tonumber(check_1) <= tonumber(check_2) + 10 then
+        game:GetService("TeleportService"):Teleport(game.PlaceId)
+    end
+    wait(15)
+end
