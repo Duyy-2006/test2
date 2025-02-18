@@ -1,3 +1,4 @@
+print("check")
 while true do
     local gold = game:GetService("Players").LocalPlayer.PlayerGui.CrossPlatform.Christmas2024.Container.EventFrames.PurchaseCurrency.Info.Coins.Container.TextLabel.Text
     local check_1 = gold
