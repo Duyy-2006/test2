@@ -1,5 +1,5 @@
 local playerName = game.Players.LocalPlayer.Name
-local GoldConfig = 0
+local GoldConfig = 200000
 local LevelConfig = 70
 local Gold = game:GetService("ReplicatedStorage").playerstats[playerName].Stats.coins.Value
 local Level = game.Players.LocalPlayer.leaderstats.Level.Value or 0
