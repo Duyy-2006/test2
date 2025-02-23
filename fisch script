@@ -1,26 +1,2 @@
-getgenv().Configuration = {
-    Enabled = true,
-    ZoneFish = 'Snowcap', -- The Depths // Forsaken Pond // Snowcap // Vertigo
-    EquipRod = 'Auto', --  Auto // Aurora Rod // Trident Rod // Kings Rod // Sunken Rod // Rapid Rod // etc.
-    Rods = {
-        ['Trident Rod'] = true,
-        ['Aurora Rod'] = true,
-        ['Kings Rod'] = true,
-        ['Sunken Rod'] = true,
-        ['Mythical Rod'] = true, 
-        ['Destiny Rod'] = true,
-        ['Rod Of The Depths'] = true,
-    },
-    AutoSell = {
-        ['Enabled'] = true,
-        ['Sell every'] = 200, -- seconds
-        ['Mythical'] = true,
-        ['Legendary'] = true,
-        ['Enchant Rellcs'] = false,
-        ['Exotic'] = true,
-        ['Event Fish'] = true,
-        ['Limited Fish'] = true,
-    },
-}
-getgenv().key = '4cda1357-838d-4d45-b65b-9a72e144383f'
-loadstring(game:HttpGet('https://raw.githubusercontent.com/Xenon-Trash/Loader/main/Loader.lua'))()
+script_key="vNTZAQUDboUOsJsisqlFYTSeNGGQFRyq";
+(loadstring or load)(game:HttpGet("https://raw.githubusercontent.com/Native-lab/Native/main/loader.lua"))()
