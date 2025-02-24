@@ -1,9 +1,49 @@
+print("WORKING")
+Fisch = 16732694052
+local randomWaitTime = math.random(300, 900)
+local randomChoice = math.random(1, 4)
+if game.PlaceId ~= Fisch then
+    task.wait(randomWaitTime)
+    game:GetService("TeleportService"):Teleport(Fisch)
+end
+
+
 gold = game:GetService("Players").LocalPlayer.leaderstats["C$"].Value or 0
 local player = game.Players.LocalPlayer
 check_1 = gold 
 wait(300)
 check_2 = gold 
+
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+
+local placeIds = {
+    4561943075, 920587237, 2753915549, 606849621, 185655149, 142823291, 2165947863, 130236561, 4623383582,
+    6284583030, 286090429, 6872265039, 3462825527, 323798598, 192800, 171108748, 284638371, 189707,
+    238872689, 537413528, 411666043, 2365716871, 6817411730, 3464749316, 1537690962, 3260590327, 199102445,
+    292439477, 2788229376, 3956818381, 3984546176, 795320235, 3593739755, 528463124, 1224212277, 155615604,
+    3569391963, 3996920166, 4517696148, 7406025110, 5825014402, 7186101188, 9578276405, 138022190, 29812686,
+    1234567890, 516342648, 2353731568, 465050658, 3527628277, 1446643685, 13605032122, 12042267032,
+    8823924742, 13887779486, 9582505056, 11569838346, 9521936842, 8912089293, 735030788, 3713749250,
+    488864988, 5501547725, 7185173060, 6651424973, 13001963, 202001937, 2068407848, 2569454230,
+    6571678922, 4011377896, 1847418322, 144695313, 1384601328, 8854746842, 13795209975, 9211115771,
+    11283904849, 8567398920, 7860255711, 9070724394, 4520749081, 514869734, 1449895677, 18230866
+}
+
+local function teleportToRandomGame()
+    local player = Players.LocalPlayer
+    if player then
+        local randomIndex = math.random(1, #placeIds)
+        local randomPlaceId = placeIds[randomIndex]
+        TeleportService:Teleport(randomPlaceId, player)
+    end
+end
+
 if check_1 == check_2 then
-    player:Kick("DIT ME SCRIPT LOI ROI")
+    if randomChoice == 1 then
+        teleportToRandomGame()
+    else
+        game:GetService("TeleportService"):Teleport(game.PlaceId)
+    end
 end
 
