@@ -1,7 +1,7 @@
 print("WORKING")
 Fisch = 16732694052
 local randomWaitTime = math.random(300, 900)
-local randomChoice = math.random(1, 2)
+local randomChoice = math.random(1, 300)
 if game.PlaceId ~= Fisch then
     task.wait(randomWaitTime)
     game:GetService("TeleportService"):Teleport(Fisch)
@@ -11,7 +11,7 @@ end
 gold = game:GetService("Players").LocalPlayer.leaderstats["C$"].Value or 0
 local player = game.Players.LocalPlayer
 check_1 = gold 
-wait(300)
+wait(30)
 check_2 = gold 
 
 local TeleportService = game:GetService("TeleportService")
