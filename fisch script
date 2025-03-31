@@ -122,9 +122,9 @@ _G.Settings = {
 		['Subfix'] = " - ",
 		['Rod Displayed'] = 10,
 	},
-	['ShakeMode'] = "Fix bug", -- Fast, Fix bug
-	["FpsBoost"] = true,
-	["Black_Screen"] = true
+	['ShakeMode'] = "Fast", -- Fast, Fix bug
+	["FpsBoost"] = false,
+	["Black_Screen"] = false
 }
 getgenv().Key = "MARU-TN4X8-SJSMZ-4WH3-DJ4GH-SA7K"
 getgenv().id = "935143471243726858"
