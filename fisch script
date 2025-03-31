@@ -1,91 +1,130 @@
 if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
 getgenv().Script_Mode = "Kaitun_Script"
 _G.Settings = {
-    ["DefaultPosition"] = CFrame.new(-13887.4863, -11048.6885, 350.19635),
-    ["AfkCheckTime"] = 30, -- Seconds
-    ["AfkFix"] = "Reset", -- Rejoin, Reset
-    ["EquipRod"] = "Auto", -- Trident Rod, Destiny Rod,... Rod
-    ["InstantFishing"] = true,
-    ["SellFish"] = {
-        ["SellDelay"] = 120, -- Seconds
-        ["Enable"] = true,
-        ["Method"] = {
-            ["Event"] = true,
-            ["Enchant"] = false,
-            ["Mythical"] = true,
-            ["Legendary"] = true,
-            ["Exotic"] = true
-        }
-    },
-    ['Rod'] = {
-        -- Necessary Rods: Rods that are required or essential for the gameplay
-        Necessary_Rods = {
-            "Steady Rod",
-            "Reinforced Rod",
-            "Depthseeker Rod",
-            "Kraken Rod",
-            "Zeus Rod",
-            "Rod Of The Depths",
-        },
-    
-        -- Custom Rods: Special rods that can be customized after obtained all necessary rods.
-        Custom_Rods = {
-            "Aurora Rod",
-            "Tempest Rod",
-            "Abyssal Specter Rod",
-            "Destiny Rod",
-            "Challenger's Rod",
-            "Rod Of The Zenith",
-            "Challenger's Rod",
-        },
-    
-        -- Puzzle Rods: Rods that will be available in the future (currently unavailable)
-        Puzzle_Rods = {
-            ["Haven's Rod"] = 400, -- ( name, required level )
-        },
-    },    
-    ["Enchant"] = {
-        ["Enabled"] = true,           -- Enable or disable the enchantment system
-        ["Relic_Limit"] = 30,         -- Maximum number of Enchant Relics allowed for use
-    
-        ["Rod"] = {                    -- Specific enchantments for each rod
-            ["Depthseeker Rod"] = {"Swift"},
-            ["Zeus Rod"] = {"Swift"}, -- Enchantments for Zeus Rod (e.g., Clever)
-            ["Kraken Rod"] = {},       -- No enchantments for Kraken Rod
-        },
-    },
-    ["Totems"] = {
-        ["Enabled"] = true,         -- Enable or disable the totem system
-        ["ActivationLevel"] = 300,  -- Level required to activate totems
-    
-        ["DayTotem"] = "Sundial Totem",    -- Totem used during the day
-        ["NightTotem"] = "Aurora Totem",   -- Totem used during the night
-    
-        ["AutoPurchase"] = true,    -- Enable automatic totem purchasing
-        ["PurchaseLimit"] = {       -- Maximum allowed purchases per type
-            ["DayTotem"] = 10,
-            ["NightTotem"] = 1,
-        },
-    },    
-    ['EnabledFishingZones'] = true,
-    ["CastZone"] = {
-        ['OnLevel'] = 300,
-        ['Zones'] = {
-            "Forsaken Veil - Scylla",
-            "Lovestorm Eel",
-            "Orcas Pool",
-            "The Kraken Pool",
-            "Megalodon Default",
-            "The Depths - Serpent",
-            "Great White Shark",
-            "Great Hammerhead Shark",
-            "Whale Shark",
-        },
-    },
-    
-    ['ShakeMode'] = "Fix bug", -- Fast, Fix bug
-    ["FpsBoost"] = true,
-    ["Black_Screen"] = true
+	["DefaultPosition"] = (Second_Sea and Second_Sea_Loc) or First_Sea_Loc,
+	["AfkCheckTime"] = 30, -- Seconds
+	["AfkFix"] = "Reset", -- Rejoin, Reset
+	["EquipRod"] = "Auto", -- Trident Rod, Destiny Rod,... Rod
+	["InstantFishing"] = true,
+	["Return to Sea1"] = {
+		["Obtained All Rods"] = true,
+	},
+	["SellFish"] = {
+		["SellDelay"] = 120, -- Seconds
+		["Enable"] = true,
+		["Method"] = {
+			["Event"] = true,
+			["Enchant"] = false,
+			["Mythical"] = true,
+			["Legendary"] = true,
+			["Exotic"] = true -- recommend to enable it
+		}
+	},
+	['Rod'] = {
+		-- Necessary Rods: Rods that are required or essential for the gameplay
+		Necessary_Rods = {
+			"Steady Rod", -- First Sea Rod
+			"Reinforced Rod",
+			"Depthseeker Rod",
+			"Kraken Rod",
+			"Zeus Rod",
+			"Ethereal Prism Rod",
+
+			"Free Spirit Rod",
+		},
+	
+		-- Custom Rods: Special rods that can be customized after obtained all necessary rods.
+		Custom_Rods = {
+			"Aurora Rod",
+			"Tempest Rod",
+			"Abyssal Specter Rod",
+			"Destiny Rod",
+			"Challenger's Rod",
+			"Rod Of The Zenith",
+			"Challenger's Rod",
+			"Nocturnal Rod",
+			"Kings Rod",
+			"Trident Rod",
+			"Poseidon Rod",
+			"Champions Rod",
+			"Volcanic Rod",
+			"Summit Rod",
+
+			"Wildflower Rod",
+			"Firefly Rod",
+			"Frog Rod",
+			"Azure Of Lagoon",
+			"Free Spirit Rod", -- need bestinary 70%
+			"Verdant Shear Rod",
+			"Great Dreamer Rod",
+		},
+	
+		-- Puzzle Rods: Rods that will be available in the future (currently unavailable)
+		Puzzle_Rods = {
+			--["Heaven's Rod"] = 400, -- ( name, required level )
+		},
+	},	
+	["Enchant"] = {
+		["Enabled"] = true,            -- Enable or disable the enchantment system
+		["Relic_Limit"] = 30,          -- Maximum number of Enchant Relics allowed for use
+		
+		["Rod"] = {                    -- Specific enchantments for each rod
+			["Depthseeker Rod"] = {
+				LevelFarm = {"Clever"}
+			},
+			["Zeus Rod"] = {
+				LevelFarm = {"Clever"}
+			},
+			["Kraken Rod"] = {
+				LevelFarm = {"Clever"}
+			},
+			["Ethereal Prism Rod"] = {
+				LevelFarm = {"Clever"},
+				CashFarm = {"Abyssal"},
+			},
+			["Free Spirit Rod"] = {
+				LevelFarm = {"Clever"},
+			}
+		},
+	},
+	["Totems"] = {
+		["Enabled"] = true,         -- Enable or disable the totem system
+		["ActivationLevel"] = 300,  -- Level required to activate totems
+	
+		["DayTotem"] = "Sundial Totem",    -- Totem used during the day
+		["NightTotem"] = "Aurora Totem",   -- Totem used during the night
+	
+		["AutoPurchase"] = true,    -- Enable automatic totem purchasing
+		["PurchaseLimit"] = {       -- Maximum allowed purchases per type
+			["DayTotem"] = 1,
+			["NightTotem"] = 1,
+		},
+	},	
+	['EnabledFishingZones'] = true,
+	["CastZone"] = {
+		['OnLevel'] = 300,
+		['Zones'] = {
+			"Forsaken Veil - Scylla",
+			"Lovestorm Eel",
+			"Orcas Pool",
+			"The Kraken Pool",
+			"Megalodon Default",
+			"The Depths - Serpent",
+			"Great White Shark",
+			"Great Hammerhead Shark",
+			"Whale Shark",
+		},
+	},
+	["RAM_Config"] = {
+		['Port'] = 7963,
+		['Password'] = "",
+		['Update Interval'] = 5,
+		['Subfix'] = " - ",
+		['Rod Displayed'] = 10,
+	},
+	['ShakeMode'] = "Fix bug", -- Fast, Fix bug
+	["FpsBoost"] = true,
+	["Black_Screen"] = true
 }
 getgenv().Key = "MARU-TN4X8-SJSMZ-4WH3-DJ4GH-SA7K"
 getgenv().id = "935143471243726858"
