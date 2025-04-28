@@ -161,7 +161,7 @@ task.spawn(function()
             [2] = "Special"
         }
         RemoteSumon:FireServer(unpack(args))
-        wait(.1)
+        wait(1)
        elseif not Settings.AFK and Settings.AutoSummon and Settings.TeleportAFK and GetGems() < 500 then
         RemoteAFK:FireServer()
         wait(5)
@@ -177,7 +177,7 @@ task.spawn(function()
             [2] = "Winter"
         }
         RemoteSumon:FireServer(unpack(args))
-        wait(.1)
+        wait(1)
        elseif not Settings.AFK and Settings.AutoSummon and Settings.TeleportAFK and GetPresent() < 1500 then
         RemoteAFK:FireServer()
         wait(5)
@@ -188,7 +188,7 @@ end)
 task.spawn(function()
  while task.wait() do
     AutoSellOnly()
-    if Settings.TeleportAFK and GetLevel() and GetGems() and GetLevel() >= 10 and GetGems() < Settings.MaxGems and not Settings.AFK and GetPresent() and GetPresent() < Settings.MaxPresent then
+    if Settings.TeleportAFK and GetLevel() and GetGems() and GetLevel() >= 10 and not Settings.AFK and GetPresent() and (GetPresent() < Settings.MaxPresent or GetGems() < Settings.MaxGems) then
         RemoteAFK:FireServer()
     elseif GetLevel() and GetLevel() >= 10 and GetGems() and GetGems() >= Settings.MaxGems and GetPresent() and GetPresent() >= Settings.MaxPresent then
      if Settings.TeleportSummon then
