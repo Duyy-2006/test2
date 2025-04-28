@@ -1,0 +1,229 @@
+local filename = game:GetService("Players").LocalPlayer.Name .. ".txt"
+local Settings = {
+    TurnOFF = {
+        SkipSummonAnimation = false;
+        AutoSellUnitsWithTraits = false;
+        AutoSell = true;
+    },
+    Webhook = {
+        Url = "https://discord.com/api/webhooks/1206831142854987846/R7HwDv6A6Xmf9rwaLORBDMr3_6tc-dEJr4GVKYqtpD4o8D3moLW1NwRxcKxVSxXt2V6j";
+        PingHere = false;
+        CustomContent = "[This is a message sent from the MMB Hub Webhook.]";
+        Name = "Donate Em di daika";
+    },
+    AutoClick = true;
+    TeleportAFK = true;
+    MaxGems = 1000;
+    MaxPresent = 3000;
+    TeleportSummon = true;
+    SummonWinter = true;
+    SummonGems = true;
+    ClickbrekAFK = true;
+    JumpBrekAFK = true;
+    AllowUnit = {"Rogita (Super 4)", "Alocard", "Secret"};
+}
+local Player = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Client = Player.LocalPlayer
+local ClientGui = Client.PlayerGui
+local ClientId = Client.UserId
+local SettingsGui = ClientGui:FindFirstChild('Windows').Settings
+local rnetwork = ReplicatedStorage:WaitForChild("Networking")
+local runit = rnetwork:FindFirstChild('Units')
+local RemoteSumon = runit:FindFirstChild("SummonEvent")
+local RemoteAFK = rnetwork:FindFirstChild('AFKEvent')
+local VirtualInputManager = game:GetService("VirtualInputManager")
+if tonumber(game.PlaceId) == 18219125606 then
+    Settings.AFK = true
+end
+
+function SendWebhook(UnitName)
+    local allrequest = request or http_request
+    if allrequest then
+         local fieldsWebhook = {
+             {
+                 ["name"] = "Players",
+                 ["value"] = "```yml\n"..Client.Name.."```",
+                 ["inline"] = true
+             },
+             {
+                ["name"] = "Units",
+                ["value"] = "```yml\n"..UnitName.."\n```",
+                ["inline"] = true
+            },
+         }
+         if Settings.Webhook.PingHere then
+            contentwebhook = "@here "..Settings.Webhook.CustomContent
+         end
+         local Embed = {
+             ["username"] = Settings.Webhook.Name or "MMB Hub",
+             ["avatar_url"] = "https://media.discordapp.net/attachments/1126033274620362762/1362076773915037696/ze.png?ex=68011459&is=67ffc2d9&hm=f8e0b2cf1431a8c616390e6be31a72fa3092727c1b6131ff0582a4fa125648ce&=&format=webp&quality=lossless",
+             ["content"] = contentwebhook or Settings.Webhook.CustomContent or "[This is a message sent from the MMB Hub Webhook.]",
+             ["embeds"] = {
+                 {
+                     ["author"] = {
+                         ["name"] = Settings.Webhook.Name or "MMB Hub"
+                     },
+                     ["color"] = 65535,
+                     ["type"] = "rich",
+                     ["fields"] = fieldsWebhook,
+                     ["footer"] = {
+                         ["text"] = os.date("%A // %d %B %Y // %X") .. " https://discord.gg/vrh3bTMZYQ",
+                     },
+                     ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ")
+                 }
+             }
+         }
+     
+         local Data = game:GetService("HttpService"):JSONEncode(Embed)
+         local Head = {["content-type"] = "application/json"}
+         local sendhook = {Url = Settings.Webhook.Url, Body = Data, Method = "POST", Headers = Head}
+         local DataWebhook = allrequest(sendhook)
+    end
+end
+function GetToggle(v)
+   if v.BackgroundColor3 == Color3.fromRGB(9, 81, 20) then
+      return true
+   elseif v.BackgroundColor3 == Color3.fromRGB(81, 24, 24) then
+    return false
+   end
+   return nil
+end
+function AutoSellOnly()
+    for i,v in pairs(game.Players.LocalPlayer.PlayerGui.Windows.Summon.Holder.AutoSell.Rarities:GetChildren()) do
+        if v.ClassName == "Frame" and v.Name ~= "Mythic" and v.EnabledGradient.Enabled == false then
+            print('adu')
+            local args = {
+                [1] = "Toggle",
+                [2] = tostring(v.Name)
+            }
+            
+            game:GetService("ReplicatedStorage"):WaitForChild("Networking"):WaitForChild("Settings"):WaitForChild("SettingsEvent"):FireServer(unpack(args))
+        end
+    end
+end
+task.spawn(function()
+    if Settings.TurnOFF.SkipSummonAnimation and GetToggle(SettingsGui.Misc.Settings.SkipSummonAnimation.Slider) == false then
+        local args = {
+            [1] = "Toggle",
+            [2] = "SkipSummonAnimation"
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Networking"):WaitForChild("Settings"):WaitForChild("SettingsEvent"):FireServer(unpack(args))
+    end
+    if Settings.TurnOFF.AutoSellUnitsWithTraits and GetToggle(SettingsGui.Misc.Settings.AutoSellUnitsWithTraits.Slider) == false then
+        local args = {
+            [1] = "Toggle",
+            [2] = "AutoSellUnitsWithTraits"
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Networking"):WaitForChild("Settings"):WaitForChild("SettingsEvent"):FireServer(unpack(args))
+    end
+end)
+function CheckLancuoi(av)
+    local agag = string.lower(av)
+    for _, v in pairs(Settings.AllowUnit) do
+        if string.find(agag, string.lower(v)) then
+            return true
+        end
+    end
+end
+ClientGui.Windows.Units.Holder.Main.Units.ChildAdded:Connect(function(pm)
+    if pm:IsA("Frame") then
+        local UnitName = pm.Holder.Main.UnitName.Text
+        for i,v in pairs(pm.Glow:GetChildren()) do
+            if v.Name ~= "Main" and (table.find(Settings.AllowUnit,v.Name) or CheckLancuoi(v.Name)) then
+                SendWebhook(UnitName)
+                writefile(filename, "Yummytool")
+            end
+        end
+    end
+end)
+function GetLevel()
+    local v112241 = string.match(ClientGui.HUD.Main.Level.Level.Text, "Level%s+(%d+)")
+    return tonumber(v112241)
+end
+function GetPresent()
+    local b5112 = ClientGui.HUD.Main.Currencies.Present.Amount.Text
+    local v15621 = string.gsub(b5112, ",", "")
+    return tonumber(v15621)
+end
+function GetGems()
+    local b5112 = ClientGui.HUD.Main.Currencies.Gems.Amount.Text
+    local v15621 = string.gsub(b5112, ",", "")
+    return tonumber(v15621)
+end
+task.spawn(function()
+    while task.wait() do
+       if not Settings.AFK and Settings.AutoSummon and GetGems() >= 500 then
+        local args = {
+            [1] = "SummonTen",
+            [2] = "Special"
+        }
+        RemoteSumon:FireServer(unpack(args))
+        wait(.1)
+       elseif not Settings.AFK and Settings.AutoSummon and Settings.TeleportAFK and GetGems() < 500 then
+        RemoteAFK:FireServer()
+        wait(5)
+       end
+    end
+end)
+
+task.spawn(function()
+    while task.wait() do
+       if not Settings.AFK and Settings.AutoSummon and GetPresent() >= 1500 then
+        local args = {
+            [1] = "SummonTen",
+            [2] = "Winter"
+        }
+        RemoteSumon:FireServer(unpack(args))
+        wait(.1)
+       elseif not Settings.AFK and Settings.AutoSummon and Settings.TeleportAFK and GetPresent() < 1500 then
+        RemoteAFK:FireServer()
+        wait(5)
+       end
+    end
+end)
+
+task.spawn(function()
+ while task.wait() do
+    AutoSellOnly()
+    if Settings.TeleportAFK and GetLevel() and GetGems() and GetLevel() >= 10 and GetGems() < Settings.MaxGems and not Settings.AFK and GetPresent() and GetPresent() < Settings.MaxPresent then
+        RemoteAFK:FireServer()
+    elseif GetLevel() and GetLevel() >= 10 and GetGems() and GetGems() >= Settings.MaxGems and GetPresent() and GetPresent() >= Settings.MaxPresent then
+     if Settings.TeleportSummon then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-151, 37, -462)
+     end
+     Settings.AutoSummon = true
+    elseif GetLevel() and GetLevel() < 10 then 
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/Duyy-2006/test2/main/maru%20animevanguard"))()
+    end
+    wait(15)
+ end
+end)
+
+task.spawn(function()
+    while wait() do
+       if Settings.AutoClick then
+            VirtualInputManager:SendMouseButtonEvent(500, 300, 0, true, game, 0)
+            task.wait(0.1)
+            VirtualInputManager:SendMouseButtonEvent(500, 300, 0, false, game, 0)
+            task.wait(0.1)
+       end
+    end
+end)
+task.spawn(function()
+ while wait() do
+    if Settings.ClickbrekAFK then
+    VirtualInputManager:SendMouseButtonEvent(500, 300, 0, true, game, 0)
+    VirtualInputManager:SendMouseButtonEvent(500, 300, 0, false, game, 0)
+    if Settings.JumpBrekAFK then
+        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Space, false, game)
+        task.wait(0.1)
+        VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Space, false, game)
+    end
+    wait(math.random(20,1000))
+    end
+ end
+end)
+print('Loaded.')
