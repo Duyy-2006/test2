@@ -162,9 +162,6 @@ task.spawn(function()
         }
         RemoteSumon:FireServer(unpack(args))
         wait(1)
-       elseif not Settings.AFK and Settings.AutoSummon and Settings.TeleportAFK and GetPresent() < 1500 and GetGems() < 500 then
-        RemoteAFK:FireServer()
-        wait(5)
        end
     end
 end)
@@ -178,9 +175,6 @@ task.spawn(function()
         }
         RemoteSumon:FireServer(unpack(args))
         wait(1)
-       elseif not Settings.AFK and Settings.AutoSummon and Settings.TeleportAFK and GetPresent() < 1500 and GetGems() < 500 then
-        RemoteAFK:FireServer()
-        wait(5)
        end
     end
 end)
