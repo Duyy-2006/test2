@@ -162,7 +162,7 @@ task.spawn(function()
         }
         RemoteSumon:FireServer(unpack(args))
         wait(1)
-       elseif not Settings.AFK and Settings.AutoSummon and Settings.TeleportAFK and GetGems() < 500 then
+       elseif not Settings.AFK and Settings.AutoSummon and Settings.TeleportAFK and GetPresent() < 1500 and GetGems() < 500 then
         RemoteAFK:FireServer()
         wait(5)
        end
@@ -178,7 +178,7 @@ task.spawn(function()
         }
         RemoteSumon:FireServer(unpack(args))
         wait(1)
-       elseif not Settings.AFK and Settings.AutoSummon and Settings.TeleportAFK and GetPresent() < 1500 then
+       elseif not Settings.AFK and Settings.AutoSummon and Settings.TeleportAFK and GetPresent() < 1500 and GetGems() < 500 then
         RemoteAFK:FireServer()
         wait(5)
        end
@@ -188,13 +188,12 @@ end)
 task.spawn(function()
  while task.wait() do
     AutoSellOnly()
-    if Settings.TeleportAFK and GetLevel() and GetGems() and GetLevel() >= 10 and not Settings.AFK and GetPresent() and (GetPresent() < Settings.MaxPresent or GetGems() < Settings.MaxGems) then
-        RemoteAFK:FireServer()
-    elseif GetLevel() and GetLevel() >= 10 and (GetPresent() >= Settings.MaxPresent or GetGems() >= Settings.MaxGems) then
-     if Settings.TeleportSummon then
+    Settings.AutoSummon = true
+    if Settings.TeleportSummon then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-151, 37, -462)
-     end
-     Settings.AutoSummon = true
+    end
+    if Settings.TeleportAFK and GetLevel() and GetGems() and GetLevel() >= 10 and not Settings.AFK and GetPresent() and (GetPresent() < Settings.MaxPresent or GetGems() < Settings.MaxGems) then
+        RemoteAFK:FireServer()     
     elseif GetLevel() and GetLevel() < 10 then 
        loadstring(game:HttpGet("https://raw.githubusercontent.com/Duyy-2006/test2/main/maru%20animevanguard"))()
     end
