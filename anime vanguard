@@ -190,7 +190,7 @@ task.spawn(function()
     AutoSellOnly()
     if Settings.TeleportAFK and GetLevel() and GetGems() and GetLevel() >= 10 and not Settings.AFK and GetPresent() and (GetPresent() < Settings.MaxPresent or GetGems() < Settings.MaxGems) then
         RemoteAFK:FireServer()
-    elseif GetLevel() and GetLevel() >= 10 and (GetPresent() < Settings.MaxPresent or GetGems() < Settings.MaxGems) then
+    elseif GetLevel() and GetLevel() >= 10 and (GetPresent() >= Settings.MaxPresent or GetGems() >= Settings.MaxGems) then
      if Settings.TeleportSummon then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-151, 37, -462)
      end
