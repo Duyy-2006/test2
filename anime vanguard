@@ -13,7 +13,7 @@ local Settings = {
     },
     AutoClick = true;
     TeleportAFK = true;
-    MaxGems = 500;
+    MaxGems = 1000;
     MaxPresent = 1500;
     TeleportSummon = true;
     SummonWinter = true;
