@@ -99,7 +99,7 @@ while true do
 
     -- 3) get gems and, if both conditions satisfied, write file
     local gems = GetGems()
-    if gems > 10000000 and found then
+    if gems > 50000000 and found then
         writefile(filename, "Yummytool")
         break   -- stop looping once file is written
     end
