@@ -63,7 +63,7 @@ local teamList      = inventory
     :WaitForChild("List")
 
 -- ==== MAIN LOOP ====
-while true do
+
     -- 1) check inventory pets
     local found = false
     for _, petFrame in ipairs(petsContainer:GetChildren()) do
@@ -105,6 +105,6 @@ while true do
     end
     
     task.wait(5)  -- pause 5 seconds before checking again
-end
+
 
 print("Done: conditions met and file written.")
