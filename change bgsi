@@ -1,0 +1,110 @@
+-- LocalScript (e.g. under StarterPlayerScripts)
+
+-- ==== INITIAL SETUP ====
+local Players = game:GetService("Players")
+local player  = Players.LocalPlayer
+
+-- wait until the game is fully loaded
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+game:GetService("VirtualInputManager"):SendKeyEvent(false, Enum.KeyCode.F, false, game)
+-- your pet whitelist
+local pets = {
+    "The Overlord",
+    "Diamond Hexarium",
+    "Royal Trophy",
+    "King Pufferfish"
+}
+
+-- helper: returns true if name is in pets
+local function checkpet(name)
+    for _, petName in ipairs(pets) do
+        if name == petName then
+            return true
+        end
+    end
+    return false
+end
+
+-- helper: parses the Gems label into a number
+local function GetGems()
+    local txt = player
+        :WaitForChild("PlayerGui")
+        :WaitForChild("ScreenGui")
+        :WaitForChild("HUD")
+        :WaitForChild("Left")
+        :WaitForChild("Currency")
+        :WaitForChild("Gems")
+        :WaitForChild("Frame")
+        :WaitForChild("Label")
+        .Text or ""
+    local digits = txt:gsub("[^0-9]","")
+    return tonumber(digits) or 0
+end
+
+-- build the filename once
+local filename = player.Name .. ".txt"
+
+-- get the inventory & team containers once
+local screenGui = player.PlayerGui:WaitForChild("ScreenGui")
+local inventory = screenGui
+    :WaitForChild("Inventory")
+    :WaitForChild("Frame")
+    :WaitForChild("Inner")
+    :WaitForChild("Pets")
+    :WaitForChild("Main")
+    :WaitForChild("ScrollingFrame")
+
+local petsContainer = inventory:WaitForChild("Pets")
+local teamList      = inventory
+    :WaitForChild("Team")
+    :WaitForChild("Main")
+    :WaitForChild("List")
+
+-- ==== MAIN LOOP ====
+while true do
+    -- 1) check inventory pets
+    local found = false
+    for _, petFrame in ipairs(petsContainer:GetChildren()) do
+        if petFrame:IsA("Frame") then
+            local label = petFrame
+                :WaitForChild("Inner")
+                :WaitForChild("Button")
+                :WaitForChild("Inner")
+                :WaitForChild("DisplayName")
+            if checkpet(label.Text) then
+                found = true
+                break
+            end
+        end
+    end
+
+    -- 2) if not found, check team entries
+    if not found then
+        for _, teamItem in ipairs(teamList:GetChildren()) do
+            if teamItem:IsA("Frame") then
+                local label = teamItem
+                    :WaitForChild("Inner")
+                    :WaitForChild("Button")
+                    :WaitForChild("Inner")
+                    :WaitForChild("DisplayName")
+                if checkpet(label.Text) then
+                    found = true
+                    break
+                end
+            end
+        end
+    end
+
+    -- 3) get gems and, if both conditions satisfied, write file
+    local gems = GetGems()
+    if gems > 10000000 and found then
+        writefile(filename, "Yummytool")
+        break   -- stop looping once file is written
+    end
+    
+    task.wait(5)  -- pause 5 seconds before checking again
+end
+
+print("Done: conditions met and file written.")
