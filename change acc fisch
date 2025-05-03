@@ -1,6 +1,6 @@
 local playerName = game.Players.LocalPlayer.Name
-local GoldConfig = 500000
-local LevelConfig = 250
+local GoldConfig = 300000
+local LevelConfig = 100
 local Gold = game:GetService("ReplicatedStorage").playerstats[playerName].Stats.coins.Value
 local Level = game.Players.LocalPlayer.leaderstats.Level.Value or 0
 local filename = game:GetService("Players").LocalPlayer.Name .. ".txt"
