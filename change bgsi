@@ -1,4 +1,4 @@
--- LocalScript (e.g. under StarterPlayerScripts)
+i-- LocalScript (e.g. under StarterPlayerScripts)
 
 local player = game.Players.LocalPlayer
 
@@ -61,23 +61,6 @@ if not found then
                 found = true
                 break
             end
-        end
-    end
-end
-
--- 3) get gems and, if both conditions satisfied, write file and exit loop
-if found and GetGems() > 50000000 then
-    writefile(filename, "Yummytool")
-    print("Done: conditions met and file written.")
-end
-
--- 2) if not found, check team entries
-for _, teamFrame in ipairs(invRoot.Team.Main.List:GetChildren()) do
-    if teamFrame:IsA("Frame") then
-        local name = teamFrame.Inner.Button.Inner.DisplayName.Text
-        if checkpet(name) then
-            found = true
-            break
         end
     end
 end
