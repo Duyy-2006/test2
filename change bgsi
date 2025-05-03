@@ -8,7 +8,7 @@ local player  = Players.LocalPlayer
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
-game:GetService("VirtualInputManager"):SendKeyEvent(false, Enum.KeyCode.F, false, game)
+game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.F, false, game)
 -- your pet whitelist
 local pets = {
     "The Overlord",
