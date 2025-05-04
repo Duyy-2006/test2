@@ -1,14 +1,16 @@
 -- LocalScript (e.g. under StarterPlayerScripts)
-local filename = game.Players.LocalPlayer.Name .. ".txt"
-local Players = game:GetService("Players")
-local player  = Players.LocalPlayer
-local found = false
+
+local player   = game.Players.LocalPlayer
+local filename = player.Name .. ".txt"
+local found    = false
+
 local pets = {
     "The Overlord",
     "Diamond Hexarium",
     "Royal Trophy",
     "King Pufferfish"
 }
+
 local function checkpet(name)
     for _, petName in ipairs(pets) do
         if name == petName then
@@ -17,45 +19,26 @@ local function checkpet(name)
     end
     return false
 end
--- Wait for the full GUI hierarchy
-local screenGui = player:WaitForChild("PlayerGui"):WaitForChild("ScreenGui")
-local inventory = screenGui
-    :WaitForChild("Inventory")
-    :WaitForChild("Frame")
-    :WaitForChild("Inner")
-    :WaitForChild("Pets")
-    :WaitForChild("Main")
-    :WaitForChild("ScrollingFrame")
 
--- 1) Print all pet display names
-local petsContainer = inventory:WaitForChild("Pets")
-for _, petFrame in ipairs(petsContainer:GetChildren()) do
+-- shortcut to the scrolling frame
+local invScroll = player.PlayerGui.ScreenGui.Inventory.Frame
+    .Inner.Pets.Main.ScrollingFrame
+
+-- 1) scan inventory pets
+for _, petFrame in ipairs(invScroll.Pets:GetChildren()) do
     if petFrame:IsA("Frame") then
-        local displayNameLabel = petFrame
-            :WaitForChild("Inner")
-            :WaitForChild("Button")
-            :WaitForChild("Inner")
-            :WaitForChild("DisplayName")
-        if checkpet(displayNameLabel.Text) then 
+        local nameText = petFrame.Inner.Button.Inner.DisplayName.Text
+        if checkpet(nameText) then
             found = true
         end
     end
 end
 
--- 2) Print all team display names
-local teamList = inventory
-    :WaitForChild("Team")
-    :WaitForChild("Main")
-    :WaitForChild("List")
-
-for _, teamItem in ipairs(teamList:GetChildren()) do
+-- 2) scan team entries
+for _, teamItem in ipairs(invScroll.Team.Main.List:GetChildren()) do
     if teamItem:IsA("Frame") then
-        local displayNameLabel = teamItem
-            :WaitForChild("Inner")
-            :WaitForChild("Button")
-            :WaitForChild("Inner")
-            :WaitForChild("DisplayName")
-        if checkpet(displayNameLabel.Text) then 
+        local nameText = teamItem.Inner.Button.Inner.DisplayName.Text
+        if checkpet(nameText) then
             found = true
         end
     end
@@ -66,10 +49,10 @@ local function GetGems()
     local digits = txt:gsub("%D", "")
     return tonumber(digits) or 0
 end
-print(GetGems())
+
 if found and GetGems() >= 100000000 then
     writefile(filename, "Yummytool")
     print("Done: conditions met and file written.")
 else
-    print{"Not meet"}
+    print("Not meet")
 end
