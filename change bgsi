@@ -1,23 +1,11 @@
-i-- LocalScript (e.g. under StarterPlayerScripts)
-
-local player = game.Players.LocalPlayer
-
--- wait until the game is fully loaded
-if not game:IsLoaded() then
-    game.Loaded:Wait()
-end
-
--- press F
-game.VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
-
--- your pet whitelist
+-- LocalScript (e.g. under StarterPlayerScripts)
+local filename = game.Players.LocalPlayer.Name .. ".txt"
+local Players = game:GetService("Players")
+local player  = Players.LocalPlayer
+local found = false
 local pets = {
     "The Overlord",
-    "Diamond Hexarium",
-    "Royal Trophy",
-    "King Pufferfish"
 }
-
 local function checkpet(name)
     for _, petName in ipairs(pets) do
         if name == petName then
@@ -26,47 +14,58 @@ local function checkpet(name)
     end
     return false
 end
+-- Wait for the full GUI hierarchy
+local screenGui = player:WaitForChild("PlayerGui"):WaitForChild("ScreenGui")
+local inventory = screenGui
+    :WaitForChild("Inventory")
+    :WaitForChild("Frame")
+    :WaitForChild("Inner")
+    :WaitForChild("Pets")
+    :WaitForChild("Main")
+    :WaitForChild("ScrollingFrame")
+
+-- 1) Print all pet display names
+local petsContainer = inventory:WaitForChild("Pets")
+for _, petFrame in ipairs(petsContainer:GetChildren()) do
+    if petFrame:IsA("Frame") then
+        local displayNameLabel = petFrame
+            :WaitForChild("Inner")
+            :WaitForChild("Button")
+            :WaitForChild("Inner")
+            :WaitForChild("DisplayName")
+        if checkpet(displayNameLabel.Text) then 
+            found = true
+        end
+    end
+end
+
+-- 2) Print all team display names
+local teamList = inventory
+    :WaitForChild("Team")
+    :WaitForChild("Main")
+    :WaitForChild("List")
+
+for _, teamItem in ipairs(teamList:GetChildren()) do
+    if teamItem:IsA("Frame") then
+        local displayNameLabel = teamItem
+            :WaitForChild("Inner")
+            :WaitForChild("Button")
+            :WaitForChild("Inner")
+            :WaitForChild("DisplayName")
+        if checkpet(displayNameLabel.Text) then 
+            found = true
+        end
+    end
+end
 
 local function GetGems()
     local txt = player.PlayerGui.ScreenGui.HUD.Left.Currency.Gems.Frame.Label.Text
     local digits = txt:gsub("%D", "")
     return tonumber(digits) or 0
 end
-
-local filename = player.Name .. ".txt"
-
--- ==== MAIN LOOP ====
-
-local gui     = player.PlayerGui.ScreenGui
-local invRoot = gui.Inventory.Frame.Inner
-
--- 1) check inventory pets
-local found = false
-for _, petFrame in ipairs(invRoot.Pets.Main.ScrollingFrame:GetChildren()) do
-    if petFrame:IsA("Frame") then
-        local name = petFrame.Inner.Button.Inner.DisplayName.Text
-        if checkpet(name) then
-            found = true
-            break
-        end
-    end
-end
-
--- 2) if not found, check team entries
-if not found then
-    for _, teamFrame in ipairs(invRoot.Team.Main.List:GetChildren()) do
-        if teamFrame:IsA("Frame") then
-            local name = teamFrame.Inner.Button.Inner.DisplayName.Text
-            if checkpet(name) then
-                found = true
-                break
-            end
-        end
-    end
-end
-
--- 3) get gems and, if both conditions satisfied, write file and exit loop
-if found and GetGems() > 50000000 then
+if found and GetGems() > 100000000 then
     writefile(filename, "Yummytool")
     print("Done: conditions met and file written.")
+else
+    print("Not meet")
 end
