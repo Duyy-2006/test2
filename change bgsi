@@ -1,7 +1,9 @@
 -- LocalScript (e.g. under StarterPlayerScripts)
 
-local player   = game.Players.LocalPlayer
-local filename = player.Name .. ".txt"
+local Players=game:GetService("Players")
+local player=Players.LocalPlayer or Players.PlayerAdded:Wait()
+local filename=player.Name..".txt"
+
 local found    = false
 
 local pets = {
