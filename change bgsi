@@ -5,6 +5,9 @@ local player  = Players.LocalPlayer
 local found = false
 local pets = {
     "The Overlord",
+    "Diamond Hexarium",
+    "Royal Trophy",
+    "King Pufferfish"
 }
 local function checkpet(name)
     for _, petName in ipairs(pets) do
@@ -63,9 +66,10 @@ local function GetGems()
     local digits = txt:gsub("%D", "")
     return tonumber(digits) or 0
 end
-if found and GetGems() > 100000000 then
+print(GetGems())
+if found and GetGems() >= 100000000 then
     writefile(filename, "Yummytool")
     print("Done: conditions met and file written.")
 else
-    print("Not meet")
+    print{"Not meet"}
 end
