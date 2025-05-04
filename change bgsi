@@ -1,5 +1,5 @@
 -- LocalScript (e.g. under StarterPlayerScripts)
-
+if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
 local Players=game:GetService("Players")
 local player=Players.LocalPlayer or Players.PlayerAdded:Wait()
 local filename=player.Name..".txt"
