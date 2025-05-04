@@ -1,11 +1,10 @@
 -- LocalScript (e.g. under StarterPlayerScripts)
-if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
-local Players=game:GetService("Players")
-local player=Players.LocalPlayer or Players.PlayerAdded:Wait()
-local filename=player.Name..".txt"
+if not game:IsLoaded() then game.Loaded:Wait() end
+local Players = game:GetService("Players")
+local player  = Players.LocalPlayer or Players.PlayerAdded:Wait()
+local filename = player.Name..".txt"
 
-local found    = false
-
+local found = false
 local pets = {
     "The Overlord",
     "Diamond Hexarium",
@@ -22,14 +21,28 @@ local function checkpet(name)
     return false
 end
 
--- shortcut to the scrolling frame
-local invScroll = player.PlayerGui.ScreenGui.Inventory.Frame
-    .Inner.Pets.Main.ScrollingFrame
+-- wait for GUI
+local playerGui = player:WaitForChild("PlayerGui")
+local screenGui = playerGui:WaitForChild("ScreenGui")
+
+local invScroll = screenGui
+    :WaitForChild("Inventory")
+    :WaitForChild("Frame")
+    :WaitForChild("Inner")
+    :WaitForChild("Pets")
+    :WaitForChild("Main")
+    :WaitForChild("ScrollingFrame")
 
 -- 1) scan inventory pets
-for _, petFrame in ipairs(invScroll.Pets:GetChildren()) do
+local petsContainer = invScroll:WaitForChild("Pets")
+for _, petFrame in ipairs(petsContainer:GetChildren()) do
     if petFrame:IsA("Frame") then
-        local nameText = petFrame.Inner.Button.Inner.DisplayName.Text
+        local nameText = petFrame
+            :WaitForChild("Inner")
+            :WaitForChild("Button")
+            :WaitForChild("Inner")
+            :WaitForChild("DisplayName")
+            .Text
         if checkpet(nameText) then
             found = true
         end
@@ -37,9 +50,19 @@ for _, petFrame in ipairs(invScroll.Pets:GetChildren()) do
 end
 
 -- 2) scan team entries
-for _, teamItem in ipairs(invScroll.Team.Main.List:GetChildren()) do
+local teamList = invScroll
+    :WaitForChild("Team")
+    :WaitForChild("Main")
+    :WaitForChild("List")
+
+for _, teamItem in ipairs(teamList:GetChildren()) do
     if teamItem:IsA("Frame") then
-        local nameText = teamItem.Inner.Button.Inner.DisplayName.Text
+        local nameText = teamItem
+            :WaitForChild("Inner")
+            :WaitForChild("Button")
+            :WaitForChild("Inner")
+            :WaitForChild("DisplayName")
+            .Text
         if checkpet(nameText) then
             found = true
         end
@@ -47,8 +70,13 @@ for _, teamItem in ipairs(invScroll.Team.Main.List:GetChildren()) do
 end
 
 local function GetGems()
-    local txt = player.PlayerGui.ScreenGui.HUD.Left.Currency.Gems.Frame.Label.Text
-    local digits = txt:gsub("%D", "")
+    local hud = screenGui:WaitForChild("HUD")
+    local left = hud:WaitForChild("Left")
+    local currency = left:WaitForChild("Currency")
+    local gems = currency:WaitForChild("Gems")
+    local label = gems:WaitForChild("Frame"):WaitForChild("Label")
+    local txt = label.Text or ""
+    local digits = txt:gsub("%D","")
     return tonumber(digits) or 0
 end
 
