@@ -4,7 +4,6 @@ local player     = game:GetService("Players").LocalPlayer
 local Players = game:GetService("Players")
 local coinsText  = player.PlayerGui.hud.safezone.coins.Text  -- e.g. "461,021 C$"
 local money = coinsText:gsub("%D", "")
-
 check_1 = tonumber(money)
 wait(30)
 check_2 = tonumber(money)
