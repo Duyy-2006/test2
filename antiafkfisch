@@ -1,48 +1,16 @@
 print("WORKING")
 Fisch = 16732694052
-local randomWaitTime = math.random(300, 900)
-local randomChoice = math.random(1, 300)
-if game.PlaceId ~= Fisch then
-    task.wait(randomWaitTime)
-    game:GetService("TeleportService"):Teleport(Fisch)
-end
+local player     = game:GetService("Players").LocalPlayer
+local Players = game:GetService("Players")
+local coinsText  = player.PlayerGui.hud.safezone.coins.Text  -- e.g. "461,021 C$"
+local money = coinsText:gsub("%D", "")
 
-
-gold = game:GetService("Players").LocalPlayer.leaderstats["C$"].Value or 0
-local player = game.Players.LocalPlayer
-check_1 = gold 
+check_1 = tonumber(money)
 wait(30)
-check_2 = gold 
-
+check_2 = tonumber(money)
 local TeleportService = game:GetService("TeleportService")
 local Players = game:GetService("Players")
-
-local placeIds = {
-  4924922222, 2753915549, 920587237, 1962086868, 142823291,
-  370731277, 4623386862, 8643099845, 6872265039, 735030788,
-  185655149, 6284583030, 4996049426, 606849621, 6516141723,
-  8099481929, 9872472334, 286090429, 11636413562, 920587237,
-  192800, 11481172616, 6737970321, 893973440, 537413528,
-  7991339063, 11053983514, 3260590327, 4954752502, 4520749081,
-  110400
-}
- 
-
-
-local function teleportToRandomGame()
-    local player = Players.LocalPlayer
-    if player then
-        local randomIndex = math.random(1, #placeIds)
-        local randomPlaceId = placeIds[randomIndex]
-        TeleportService:Teleport(randomPlaceId, player)
-    end
-end
-
 if check_1 == check_2 then
-    if randomChoice == 1 then
-        teleportToRandomGame()
-    else
-        game:GetService("TeleportService"):Teleport(game.PlaceId)
-    end
+    game:GetService("TeleportService"):Teleport(game.PlaceId)
 end
 
