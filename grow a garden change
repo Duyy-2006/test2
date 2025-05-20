@@ -25,7 +25,7 @@ for name, count in pairs(seedCounts) do
 end
 
 if totalSeeds >= change then
-    print("True")
+    print("True: ", totalSeeds)
     writefile(filename, "Yummytool")
 else 
     print("False")
