@@ -1,33 +1,27 @@
-local change = 1000
-local Players = game:GetService("Players")
-local player  = Players.LocalPlayer or Players.PlayerAdded:Wait()
-local filename = player.Name .. ".txt"
+local Players   = game:GetService("Players")
+local player    = Players.LocalPlayer or Players.PlayerAdded:Wait()
+local backpack  = player:WaitForChild("Backpack")
 
--- Wait for the Backpack itself
-local backpack = player:WaitForChild("Backpack")
+local seedCounts = {}
+local totalSeeds = 0
 
--- Function to return the total number of seeds in the backpack
-local function getTotalSeeds()
-    local total = 0
-    for _, tool in ipairs(backpack:GetChildren()) do
-        if tool.Name:lower():find("seed") then
-            -- extract the first number (e.g. “24” from “[X24]”), default to 1
-            local count = tonumber(tool.Name:match("(%d+)")) or 1
-            total = total + count
-        end
-    end
-    return total
-end
+for _, tool in ipairs(backpack:GetChildren()) do
+    -- find only the ones whose name contains “Seed” (case-insensitive)
+    if tool.Name:lower():find("seed") then
+        -- pull the first number you see in the name, default to 1
+        local count = tonumber(tool.Name:match("(%d+)")) or 1
+        -- strip off any “[X…]” (or other brackets) to get the base seed name
+        local seedName = tool.Name:match("^(.-)%s*%[") or tool.Name
 
-while true do
-    print(getTotalSeeds())
-    if getTotalSeeds() >= change then
-        print("True")
-        writefile(filename, "Yummytool")
-        break
-    else
-        print("False")
-        wait(15)
+        seedCounts[seedName] = (seedCounts[seedName] or 0) + count
+        totalSeeds = totalSeeds + count
     end
 end
- 
+
+-- print each seed type and how many you have
+for name, count in pairs(seedCounts) do
+    print(name .. ": " .. count)
+end
+
+-- (optional) print the grand total
+print("Total seeds: " .. totalSeeds)
