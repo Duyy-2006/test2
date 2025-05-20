@@ -28,5 +28,5 @@ if totalSeeds >= change then
     print("True: ", totalSeeds)
     writefile(filename, "Yummytool")
 else 
-    print("False")
+    print("False: ", totalSeeds)
 end
