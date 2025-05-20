@@ -5,7 +5,9 @@ local filename = player.Name .. ".txt"
 local change = 600
 local seedCounts = {}
 local totalSeeds = 0
-
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid  = character:WaitForChild("Humanoid")
+humanoid:UnequipTools()
 for _, tool in ipairs(backpack:GetChildren()) do
     -- find only the ones whose name contains “Seed” (case-insensitive)
     if tool.Name:lower():find("seed") then
