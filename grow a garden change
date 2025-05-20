@@ -1,35 +1,32 @@
-local change = 1000
-local Players = game:GetService("Players")
-local player  = Players.LocalPlayer or Players.PlayerAdded:Wait()
+local Players   = game:GetService("Players")
+local player    = Players.LocalPlayer or Players.PlayerAdded:Wait()
+local backpack  = player:WaitForChild("Backpack")
 local filename = player.Name .. ".txt"
+local change = 1000
+local seedCounts = {}
+local totalSeeds = 0
 
--- Wait for the Backpack itself
-local backpack = player:WaitForChild("Backpack")
+for _, tool in ipairs(backpack:GetChildren()) do
+    -- find only the ones whose name contains “Seed” (case-insensitive)
+    if tool.Name:lower():find("seed") then
+        -- pull the first number you see in the name, default to 1
+        local count = tonumber(tool.Name:match("(%d+)")) or 1
+        -- strip off any “[X…]” (or other brackets) to get the base seed name
+        local seedName = tool.Name:match("^(.-)%s*%[") or tool.Name
 
--- Function to return the total number of seeds in the backpack
-local function getTotalSeeds()
-    local totalSeeds = 0
-    for _, tool in ipairs(backpack:GetChildren()) do
-        -- find only the ones whose name contains “Seed” (case-insensitive)
-        if tool.Name:lower():find("seed") then
-            -- pull the first number you see in the name, default to 1
-            local count = tonumber(tool.Name:match("(%d+)")) or 1
-            -- strip off any “[X…]” (or other brackets) to get the base seed name
-            local seedName = tool.Name:match("^(.-)%s*%[") or tool.Name
-            totalSeeds = totalSeeds + count
-        end
+        seedCounts[seedName] = (seedCounts[seedName] or 0) + count
+        totalSeeds = totalSeeds + count
     end
-    return totalSeeds
 end
 
-while true do
-    print(getTotalSeeds())
-    if getTotalSeeds() >= change then
-        print("True")
-        writefile(filename, "Yummytool")
-        break
-    else
-        print("False")
-        wait(15)
-    end
+-- print each seed type and how many you have
+for name, count in pairs(seedCounts) do
+    print(name .. ": " .. count)
+end
+
+if totalSeeds >= change then
+    print("True")
+    writefile(filename, "Yummytool")
+else 
+    print("False")
 end
