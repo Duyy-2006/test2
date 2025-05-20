@@ -2,7 +2,7 @@ local Players   = game:GetService("Players")
 local player    = Players.LocalPlayer or Players.PlayerAdded:Wait()
 local backpack  = player:WaitForChild("Backpack")
 local filename = player.Name .. ".txt"
-local change = 1000
+local change = 600
 local seedCounts = {}
 local totalSeeds = 0
 
