@@ -1,34 +1,22 @@
-local Players   = game:GetService("Players")
-local player    = Players.LocalPlayer or Players.PlayerAdded:Wait()
-local backpack  = player:WaitForChild("Backpack")
+local change   = math.random(100000000,110000000)
+local Players  = game:GetService("Players")
+
+local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
+
+local function getShecklesStat()
+    local leaderstats = player:WaitForChild("leaderstats")
+    local shecklesStat = leaderstats:WaitForChild("Sheckles").Value
+    return shecklesStat
+end
 local filename = player.Name .. ".txt"
-local change = 100
-local seedCounts = {}
-local totalSeeds = 0
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid  = character:WaitForChild("Humanoid")
-humanoid:UnequipTools()
-for _, tool in ipairs(backpack:GetChildren()) do
-    -- find only the ones whose name contains “Seed” (case-insensitive)
-    if tool.Name:lower():find("seed") then
-        -- pull the first number you see in the name, default to 1
-        local count = tonumber(tool.Name:match("(%d+)")) or 1
-        -- strip off any “[X…]” (or other brackets) to get the base seed name
-        local seedName = tool.Name:match("^(.-)%s*%[") or tool.Name
 
-        seedCounts[seedName] = (seedCounts[seedName] or 0) + count
-        totalSeeds = totalSeeds + count
+while true do
+    if getShecklesStat() >= change then
+        print("True")
+        writefile(filename, "Yummytool")
+        break
+    else
+        print("False")
+        wait(15)
     end
-end
-
--- print each seed type and how many you have
-for name, count in pairs(seedCounts) do
-    print(name .. ": " .. count)
-end
-
-if totalSeeds >= change then
-    print("True: ", totalSeeds)
-    writefile(filename, "Yummytool")
-else 
-    print("False: ", totalSeeds)
 end
