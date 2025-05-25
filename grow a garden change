@@ -1,4 +1,4 @@
-local change   = math.random(500000000,520000000)
+local change   = math.random(1000000000,1100000000)
 local Players  = game:GetService("Players")
 
 local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
