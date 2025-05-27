@@ -1,4 +1,4 @@
-local change   = 1000000000
+local change   = 10000000000
 local Players  = game:GetService("Players")
 
 local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
