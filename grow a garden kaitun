@@ -29,42 +29,36 @@ getgenv().Config = {
         ["Legendary Egg"] = false,
         ["Bug Egg"] = true
     },
-    ["ItemBlood"] = {
-        ["Blood Banana"] = true,
-        ["Blood Owl"] = false,
-        ["Night Seed Pack"] = true,
-        ["Moon Melon"] = true,
-        ["Mysterious Crate"] = false,
-        ["Blood Kiwi"] = false,
-        ["Night Egg"] = false,
-        ["Star Caller"] = false,
-        ["Blood Hedgehog"] = false
+    ["Honey Item"] = {
+        ["Nectarine"] = false,
+        ["Flower Seed Pack"] = false,
+        ["Honey Sprinkler"] = false,
+        ["Honey Torch"] = false,
+        ["Bee Chair"] = false,
+        ["Honey Walkway"] = false,
+        ["Bee Egg"] = true,
+        ["Bee Crate"] = false,
+        ["Hive Fruit"] = false,
+        ["Honey Comb"] = false
     },
-    ["Item Twilight"] = {
-        ["Moon Mango"] = true,
-        ["Celestiberry"] = true,
-        ["Twilight Crate"] = true,
-        ["Night Seed Pack"] = true,
-        ["Night Egg"] = true,
-        ["Moon Cat"] = true,
-        ["Star Caller"] = false
-    },
+
     ["Sprinkler"] = {
         ["Basic Sprinkler"] = true,
         ["Advanced Sprinkler"] = true,
         ["Master Sprinkler"] = true,
         ["Godly Sprinkler"] = true
     },
-    ["Plant Candy"] = true,
+    ["Plant Candy"] = false,
     ["PetNeedSend"] = {"Dragonfly", "Night Owl", "Raccoon"},
     ["Destroy Mode"] = {
         ["Auto Destroy when have money"] = 1000000, -- its will destroy all trees select when money >= select
         ["Trees"] = {"Strawberry", "Blueberry", "Corn", "Tomato", "Orange Tulip"}
     },
     ["Url"] = "https://discord.com/api/webhooks/1206831142854987846/R7HwDv6A6Xmf9rwaLORBDMr3_6tc-dEJr4GVKYqtpD4o8D3moLW1NwRxcKxVSxXt2V6j", -- Webhook 
+
     ["Boost FPS"] = true,
     ["Black Screen"] = true,
-    ["Note"] = "UwU",
+    ["Note"] = "Cyndral Hub",
     ["Pet Mode"] = {
         ["Sell Pet"] = true,
         ["Equip Pet"] = true,
@@ -79,7 +73,27 @@ getgenv().Config = {
             ["Legendary"] = false,
             ["Divine"] = false,
             ["Mythical"] = false
-        }
+        },
+        ["Pet Dont Delete"] = {}
+    },
+    ["Rejoin After X Time"] = 60, -- Minutes
+    ["Mutation Skips"] = { -- Skip Havest
+        ["Pollinated"] = false,
+        ["Disco"] = false,
+        ["Twisted"] = false,
+        ["Wet"] = false,
+        ["Choc"] = false,
+        ["Bloodlit"] = false,
+        ["Celestial"] = false,
+        ["Moonlit"] = false,
+        ["Chilled"] = false,
+        ["Zombified"] = false,
+        ["Plasma"] = false,
+        ["Burnt"] = false,
+        ["Frozen"] = false,
+        ["Voidtouched"] = false,
+        ["HoneyGlazed"] = false,
+        ["Shocked"] = false
     }
 }
 setfpscap(getgenv().Config["FPS"] or 3)
