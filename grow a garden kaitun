@@ -19,7 +19,7 @@ getgenv().Config = {
         ["Grape"] = 44,
         ["Bamboo"] = 44
     },
-    ["FPS"] = 3,
+    ["FPS"] = 10,
     ["Buy Egg"] = true,
     ["Egg"] = {
         ["Common Egg"] = false,
